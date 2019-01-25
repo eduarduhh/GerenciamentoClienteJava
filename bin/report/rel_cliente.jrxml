@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_cliente" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4cce652-0b69-47af-8324-07d5991b71d5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Eduardo\\Documents\\relatorio\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT codigo,nome, cpf, rg,
+CASE
+	WHEN sexo = 'M' THEN 'MASCULINO'
+	WHEN sexo = 'F' THEN 'FEMININO'
+END AS sexo,
+CASE
+	WHEN ativo = '1' THEN 'ATIVO'
+	WHEN ativo = '0' THEN 'INATIVO'
+END AS ativo
+FROM CLIENTE WHERE d_e_l_e_t_e is null
+ORDER BY nome]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rg" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ativo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="codigo" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{codigo}]]></variableExpression>
+	</variable>
+	<variable name="Soma" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{codigo}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="0" width="325" height="43" uuid="fabc81c3-8acf-4a82-9688-3b6a6214231a"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE CLIENTES]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="434" y="37" width="100" height="20" uuid="562719c8-bb0f-415a-85e3-7e789ed2f37b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="23" y="0" width="54" height="57" uuid="fd970b0c-7105-410a-bcd7-bf34e5d5a967"/>
+				<imageExpression><![CDATA[src\\img\\rel.png]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="334" y="37" width="100" height="20" uuid="82df3366-0282-4443-b13b-6e9b70a4c9ec"/>
+				<text><![CDATA[Data de emissão]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="92" y="0" width="92" height="20" uuid="9b1025f5-ab68-44d0-befb-7689341067db"/>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="0" width="92" height="20" uuid="a1f31ae0-a122-4ea8-9cb2-72a772c5f9ea"/>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="92" height="20" uuid="220d7068-2848-4772-8857-24cc5db98dc2"/>
+				<text><![CDATA[RG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="92" height="20" uuid="d7e30ed9-4d27-459f-b44b-e4d8f3551ef7"/>
+				<text><![CDATA[SEXO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="92" height="20" uuid="735685b2-58f5-4cc3-bc12-3da1177e037b"/>
+				<text><![CDATA[ATIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="3" width="92" height="20" uuid="d6ea9abc-1db3-48fa-bbf1-5ceee7613e20"/>
+				<text><![CDATA[#]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="92" height="20" uuid="af8ead1d-97df-488c-b1bb-067a81b8efc3"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="107" height="20" uuid="8e82ea1c-3217-4d6c-a8fa-88273c279f59"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="0" width="92" height="20" uuid="f96560e9-c1aa-45b0-b66f-5bb575314698"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="92" height="20" uuid="4f441a6f-12ad-48ac-b8ae-194810da1cd4"/>
+				<textFieldExpression><![CDATA[$F{rg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="92" height="20" uuid="e3e40605-d632-4d72-950a-42d6fd2e119f"/>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="92" height="20" uuid="3fb4e0fb-42e2-4e84-8160-4d52823541f0"/>
+				<textFieldExpression><![CDATA[$F{ativo}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="20" width="552" height="39" uuid="4db37492-c55f-4efb-bebf-7c4351261e1e"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rel_cliente_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="44">
+			<subreport>
+				<reportElement x="0" y="5" width="552" height="39" uuid="d3771324-dfdb-4a07-94b8-39638eeeaa63"/>
+				<subreportParameter name="codigo_cliente">
+					<subreportParameterExpression><![CDATA[$F{codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codigo_cliente1">
+					<subreportParameterExpression><![CDATA[$F{codigo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rel_cliente_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="44" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="470" y="34" width="82" height="20" uuid="4576eef2-8e39-4918-99a0-f8c98b860be8"/>
+				<textFieldExpression><![CDATA[$V{Soma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="34" width="100" height="20" uuid="2c7fce93-5165-47e7-8fdb-ed66d8eeb3cc"/>
+				<text><![CDATA[Totais de clientes]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
